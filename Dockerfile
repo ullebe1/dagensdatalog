@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTANER Ulrik Djurtoft "ullebe1@gmail.com"
+MAINTAINER Ulrik Djurtoft "ullebe1@gmail.com"
 
 RUN apt-get update -y && \
     apt-get install -y python-pip python-dev
