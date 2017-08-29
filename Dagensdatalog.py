@@ -30,18 +30,30 @@ def api():
 
 def open_json():
     p = Path(os.path.join(wd, 'image.json'))
+    if not p.is_file():
+        p.open('w').write('{}')
+
     with p.open() as json_data:
         return json.load(json_data)
 
 def get_picture():
     json_data = open_json()
     today = str(datetime.date.today())
-    available_pictures = os.listdir('pictures')
-    latest_pictures = json_data['latest_pictures']
 
-    if json_data['update_time'] == today:
+    try:
+        available_pictures = os.listdir('pictures')
+    except Exception as e:
+        print('Failed to find directory "pictures"')
+
+    try:
+        latest_pictures = json_data['latest_pictures']
+        update_time = json_data['update_time']
+    except Exception as e:
+        return "Failed to load image.json"
+
+    if update_time == today:
         picture = latest_pictures[0]
-    else :
+    else:
         picture = random.choice(available_pictures)
         latest_pictures.reverse()
         latest_pictures.append(picture)
@@ -56,8 +68,6 @@ def get_picture():
                               indent=4, sort_keys=True,
                               separators=(',', ': '), ensure_ascii=False)
             outfile.write(to_unicode(str_))
-
-
 
     return picture
 
