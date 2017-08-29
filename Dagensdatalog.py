@@ -20,8 +20,30 @@ def send_picture(path):
     return send_from_directory('pictures', path)
 
 @app.route('/')
-def hello_world():
-    return '<!DOCTYPE html> <html> <head> <title>Dagensdatalog</title> <style type="text/css"> html, body { height: 100%; width: 100%; padding: 0px; margin: 0px; background-image: url("/pictures/' + get_picture() + '"); background-repeat: no-repeat; background-position: center; background-size: contain; background-color: #000; } </style> </head> <body> </body> </html>'
+def send_index():
+    return """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Dagensdatalog</title>
+            <style type="text/css">
+                html, body {
+                    height: 100%;
+                    width: 100%;
+                    padding: 0px;
+                    margin: 0px;
+                    background-image: url(""" + get_picture() + """);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+                    background-color: #000;
+                }
+            </style>
+        </head>
+        <body>
+        </body>
+        </html>
+    """
 
 @app.route('/api')
 def api():
@@ -41,33 +63,36 @@ def get_picture():
     today = str(datetime.date.today())
 
     try:
-        available_pictures = os.listdir('pictures')
-    except Exception as e:
-        print('Failed to find directory "pictures"')
-
-    try:
         latest_pictures = json_data['latest_pictures']
         update_time = json_data['update_time']
     except Exception as e:
-        return "Failed to load image.json"
+        print('Failed to find json file')
+        return ""
 
     if update_time == today:
         picture = latest_pictures[0]
     else:
-        picture = random.choice(available_pictures)
-        latest_pictures.reverse()
-        latest_pictures.append(picture)
-        latest_pictures.reverse()
-        if len(latest_pictures) > 5:
-            latest_pictures.pop()
+        try:
+            picture = os.listdir('pictures')
 
-        json_data = {'update_time': today,
-                     'latest_pictures': latest_pictures}
-        with io.open('image.json', 'w', encoding='utf8') as outfile:
-            str_ = json.dumps(json_data,
-                              indent=4, sort_keys=True,
-                              separators=(',', ': '), ensure_ascii=False)
-            outfile.write(to_unicode(str_))
+            available_pictures = random.choice(available_pictures)
+            latest_pictures.reverse()
+            latest_pictures.append(picture)
+            latest_pictures.reverse()
+            if len(latest_pictures) > 5:
+                latest_pictures.pop()
+
+            json_data = {'update_time': today,
+                         'latest_pictures': latest_pictures}
+            with io.open('image.json', 'w', encoding='utf8') as outfile:
+                str_ = json.dumps(json_data,
+                                  indent=4, sort_keys=True,
+                                  separators=(',', ': '), ensure_ascii=False)
+                outfile.write(to_unicode(str_))
+
+        except Exception as e:
+            print('Failed to find "pictures"')
+            return ''
 
     return picture
 
