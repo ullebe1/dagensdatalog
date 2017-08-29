@@ -32,7 +32,7 @@ def send_index():
                     width: 100%;
                     padding: 0px;
                     margin: 0px;
-                    background-image: url(""" + get_picture() + """);
+                    background-image: url(/pictures/""" + get_picture() + """);
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: contain;
@@ -62,20 +62,21 @@ def get_picture():
     json_data = open_json()
     today = str(datetime.date.today())
 
+    no_picture_yet = False
+
     try:
         latest_pictures = json_data['latest_pictures']
         update_time = json_data['update_time']
     except Exception as e:
-        print('Failed to find json file')
-        return ""
+        no_picture_yet = True
 
-    if update_time == today:
+    if not no_picture_yet and update_time == today:
         picture = latest_pictures[0]
     else:
         try:
-            picture = os.listdir('pictures')
+            latest_pictures = os.listdir('pictures')
 
-            available_pictures = random.choice(available_pictures)
+            picture = random.choice(latest_pictures)
             latest_pictures.reverse()
             latest_pictures.append(picture)
             latest_pictures.reverse()
@@ -91,7 +92,7 @@ def get_picture():
                 outfile.write(to_unicode(str_))
 
         except Exception as e:
-            print('Failed to find "pictures"')
+            print(e)
             return ''
 
     return picture
