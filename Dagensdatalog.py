@@ -74,14 +74,17 @@ def get_picture():
         picture = latest_pictures[0]
     else:
         try:
-            latest_pictures = os.listdir('pictures')
+            pictures = os.listdir('pictures')
+            picture = random.choice(pictures)
 
-            picture = random.choice(latest_pictures)
-            latest_pictures.reverse()
-            latest_pictures.append(picture)
-            latest_pictures.reverse()
+            if no_picture_yet:
+                latest_pictures = []
+                latest_pictures.append(picture)
+            else:
+                latest_pictures.insert(0, picture)
+
             if len(latest_pictures) > 5:
-                latest_pictures.pop()
+                latest_pictures = latest_pictures[0:5]
 
             json_data = {'update_time': today,
                          'latest_pictures': latest_pictures}
@@ -92,7 +95,6 @@ def get_picture():
                 outfile.write(to_unicode(str_))
 
         except Exception as e:
-            print(e)
             return ''
 
     return picture
