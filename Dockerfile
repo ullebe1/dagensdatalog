@@ -23,6 +23,8 @@ RUN apt-get update -y && \
 RUN mkdir -p /deploy/app
 COPY gunicorn_config.py /deploy/gunicorn_config.py
 COPY Dagensdatalog.py /deploy/app/Dagensdatalog.py
+COPY pictures /deploy/app/pictures/
+COPY image.json /deploy/app/image.json
 COPY ./requirements.txt /deploy/app/requirements.txt
 RUN pip install -r /deploy/app/requirements.txt
 WORKDIR /deploy/app
