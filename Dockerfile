@@ -30,4 +30,4 @@ WORKDIR /deploy/app
 EXPOSE 5000
 
 # Start gunicorn
-CMD ["/usr/bin/gunicorn", "--config", "/deploy/gunicorn_config.py", "dagensdatalog:app"]
+CMD ["/usr/bin/gunicorn", "--config", "/deploy/gunicorn_config.py", "Dagensdatalog:app"]
