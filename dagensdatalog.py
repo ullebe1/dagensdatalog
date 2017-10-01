@@ -1,4 +1,6 @@
 from flask import Flask,jsonify, send_from_directory, render_template
+from flask_compress import Compress
+
 from tinydb import TinyDB, Query
 
 import os
@@ -8,8 +10,11 @@ import random
 wd = os.path.dirname(os.path.realpath(__file__))
 dbpath = os.path.join(wd, 'db.json')
 
+compress = Compress()
 app = Flask(__name__)
 db = TinyDB(dbpath)
+
+compress.init_app(app)
 
 #
 # Routes
@@ -24,16 +29,24 @@ def api_specific(date):
     try:
         date = datetime.datetime.strptime(date, "%d-%m-%Y").date()
     except ValueError:
-        return jsonify({'error': 'invalid date'})
+        return jsonify({'error': 'invalid date'}), 400
 
-    return jsonify(get_picture(date))
+    if date > datetime.date.today():
+        return jsonify({'error': 'date is in the future'}), 400
+    else:
+        return jsonify(get_picture(date))
 
 @app.route('/api/<n>')
 def api_n(n):
     try:
+        n = int(n)
+
+        if n > 256 or n < 1:
+            return jsonify({'error': 'number out of range 1-255'}), 400
+
         return jsonify(get_pictures(int(n)))
     except ValueError:
-        return jsonify({'error': 'invalid number'})
+        return jsonify({'error': 'invalid number'}), 400
         
 @app.route('/api')
 def api():

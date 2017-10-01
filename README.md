@@ -4,7 +4,7 @@
 
 **URL** : `/api/<n>`
 
-**Parameter format** : Integer in range 1-255
+**Parameter format** : Integer in range 1-256
 
 **Method** : `GET`
 
