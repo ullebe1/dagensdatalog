@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-find . -name \*.py | entr -r env FLASK_APP=Dagensdatalog.py flask run
+find . -regex '\(.*.py\|.*.html\)'  | entr -r env FLASK_APP=dagensdatalog.py flask run

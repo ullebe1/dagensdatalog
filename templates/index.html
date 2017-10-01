@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <meta property="og:url"           content="http://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}" />
+		<meta property="og:type"          content="website" />
+		<meta property="og:title"         content="Dagensdatalog" />
+		<meta property="og:description"   content="{{ date.strftime('%B %-d') }}" />
+
+		<meta property="og:image"         content="http://dagensdatalog.dk/picture/{{picture}}" />
+
+        <link rel="icon" href="/favicon.ico?v=1.1">
+
+        <title>Dagensdatalog</title>
+
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                width: 100%;
+                padding: 0px;
+                margin: 0px;
+
+                background-image: url(/picture/{{picture}});
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+
+                background-color: #080808;
+                font-family: monospace;
+            }
+
+            .noselect {
+                -webkit-touch-callout: none; 
+                -webkit-user-select: none; 
+                -khtml-user-select: none; 
+                -moz-user-select: none;
+                -ms-user-select: none; 
+                user-select: none; 
+            }
+
+            .info {
+                position: absolute;
+                top: 30px;
+                color: white;
+                font-size: 30px;
+                right: 30px;
+                text-align: right;
+                line-height: 40px;
+            }
+
+            .info a {
+            	color: rgba(0,0,0,0);
+            }
+
+            .arrow {
+                position: absolute;
+                height: 75px;
+                width: 75px;
+                color: white;
+                top: calc(50% - 37px);
+                font-size: 75px;
+                cursor: pointer;
+                opacity: 0.2;
+                text-align: center;
+            }
+
+            .arrow:hover {
+                opacity: 0.5;
+            }
+
+            .arrow.left {
+                left: 10px;
+            }
+
+            .arrow.right {
+                right: 10px;
+            }
+
+            .fb_iframe_widget span {
+			    display: inline-block;
+			    position: relative;
+			    text-align: justify;
+			    width: 124px;
+			}
+        </style>
+    </head>
+    <body>
+      	<!-- Load Facebook SDK for JavaScript -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.async=true;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+        <div class="info">
+        	{{ date.strftime("%B %-d") }}<br>
+
+        	{% if picture %}
+        	<div class="fb-share-button" data-href="http://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}" data-layout="button_count" data-size="large">
+        		<a class="fb-xfbml-parse-ignore" target="_blank" href="http://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}">Share</a>
+        	</div>
+        	{% endif %}
+        </div>
+
+	    <a href="/{{ (date - datetime.timedelta(days=1)).strftime("%d-%m-%Y") }}"><div class="arrow left noselect">&#8678;</div></a>
+
+        {% if date != datetime.date.today() %}
+        <a href="/{{ (date + datetime.timedelta(days=1)).strftime("%d-%m-%Y") }}"><div class="arrow right noselect">&#8680;</div></a>
+        {% endif %}
+
+  </div>
+    </body>
+</html>

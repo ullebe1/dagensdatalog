@@ -3,4 +3,4 @@
 /venv
 /.idea
 *.log
-image.json
+db.json
