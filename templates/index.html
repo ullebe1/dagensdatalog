@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta property="og:url"           content="http://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}" />
+        <meta property="og:url"           content="https://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}" />
 		<meta property="og:type"          content="website" />
 		<meta property="og:title"         content="Dagensdatalog" />
 		<meta property="og:description"   content="{{ date.strftime('%B %-d') }}" />
 
-		<meta property="og:image"         content="http://dagensdatalog.dk/picture/{{picture}}" />
+		<meta property="og:image"         content="https://dagensdatalog.dk/picture/{{picture}}" />
 
         <link rel="icon" href="/favicon.ico?v=1.1">
 
@@ -112,8 +112,8 @@
         	{{ date.strftime("%B %-d") }}<br>
 
         	{% if picture %}
-        	<div class="fb-share-button" data-href="http://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}" data-layout="button_count" data-size="large">
-        		<a class="fb-xfbml-parse-ignore" target="_blank" href="http://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}">Share</a>
+        	<div class="fb-share-button" data-href="https://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}" data-layout="button_count" data-size="large">
+        		<a class="fb-xfbml-parse-ignore" target="_blank" href="https://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}">Share</a>
         	</div>
         	{% endif %}
         </div>
