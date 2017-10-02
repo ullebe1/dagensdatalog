@@ -8,7 +8,7 @@ import datetime
 import random
 
 wd = os.path.dirname(os.path.realpath(__file__))
-dbpath = os.path.join(wd, 'db.json')
+dbpath = os.path.join(wd, 'pictures/db.json')
 
 compress = Compress()
 app = Flask(__name__)
