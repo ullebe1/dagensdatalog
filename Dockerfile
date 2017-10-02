@@ -22,9 +22,8 @@ RUN apt-get update -y && \
 # Setup flask application
 RUN mkdir -p /deploy/app
 COPY gunicorn_config.py /deploy/gunicorn_config.py
-COPY Dagensdatalog.py /deploy/app/Dagensdatalog.py
-COPY pictures /deploy/app/pictures/
-COPY image.json /deploy/app/image.json
+COPY dagensdatalog.py /deploy/app/dagensdatalog.py
+COPY templates /deploy/app/templates
 COPY ./requirements.txt /deploy/app/requirements.txt
 RUN pip install -r /deploy/app/requirements.txt
 WORKDIR /deploy/app
@@ -32,4 +31,4 @@ WORKDIR /deploy/app
 EXPOSE 80
 
 # Start gunicorn
-CMD ["/usr/bin/gunicorn", "--config", "/deploy/gunicorn_config.py", "Dagensdatalog:app"]
+CMD ["/usr/bin/gunicorn", "--config", "/deploy/gunicorn_config.py", "dagensdatalog:app"]
