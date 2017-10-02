@@ -114,6 +114,20 @@
         <a href="/{{ (date + datetime.timedelta(days=1)).strftime("%d-%m-%Y") }}"><div class="arrow right noselect">&#8680;</div></a>
         {% endif %}
 
-  </div>
+        <script>
+            document.onkeydown = (e) => {
+                e = e || window.event;
+
+                if (e.keyCode == '37') {
+                    // left arrow
+                    window.location.href = "/{{ (date - datetime.timedelta(days=1)).strftime("%d-%m-%Y") }}"
+                }
+                else if (e.keyCode == '39' && {{ 'true' if date != datetime.date.today() else 'false' }}) {
+                    // right arrow
+                    window.location.href = "/{{ (date + datetime.timedelta(days=1)).strftime("%d-%m-%Y") }}";
+                }
+            }
+        </script>
+
     </body>
 </html>
