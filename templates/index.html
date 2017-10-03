@@ -118,7 +118,10 @@
         	{% endif %}
         </div>
 
+
+        {% if (date - datetime.timedelta(days=1)) >= startDate %}
 	    <a href="/{{ (date - datetime.timedelta(days=1)).strftime("%d-%m-%Y") }}"><div class="arrow left noselect">&#8678;</div></a>
+        {% endif %}
 
         {% if date != datetime.date.today() %}
         <a href="/{{ (date + datetime.timedelta(days=1)).strftime("%d-%m-%Y") }}"><div class="arrow right noselect">&#8680;</div></a>
@@ -128,7 +131,7 @@
             document.onkeydown = (e) => {
                 e = e || window.event;
 
-                if (e.keyCode == '37') {
+                if (e.keyCode == '37' && {{ 'true' if (date - datetime.timedelta(days=1)) >= startDate else 'false' }}) {
                     // left arrow
                     window.location.href = "/{{ (date - datetime.timedelta(days=1)).strftime("%d-%m-%Y") }}"
                 }

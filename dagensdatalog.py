@@ -10,6 +10,8 @@ import random
 wd = os.path.dirname(os.path.realpath(__file__))
 dbpath = os.path.join(wd, 'pictures/db.json')
 
+startDate = datetime.date(2017, 10, 1) # Do not shop pictures before this date
+
 compress = Compress()
 app = Flask(__name__)
 db = TinyDB(dbpath)
@@ -63,7 +65,7 @@ def index_specific(date):
     try:
         date = datetime.datetime.strptime(date, "%d-%m-%Y").date()
 
-        if date > datetime.date.today():
+        if date > datetime.date.today() or date < startDate:
             return render_template('notfound.html', nopicture=True), 404
         else:
             picture = get_picture(date)['image']
@@ -71,16 +73,20 @@ def index_specific(date):
     except ValueError:
         return render_template('notfound.html'), 404
 
-    return render_template('index.html', picture=picture, datetime=datetime, date=date)
+    return render_template('index.html', picture=picture, datetime=datetime, date=date, startDate=startDate)
 
 @app.route('/')
 def index():
     date = datetime.date.today()
     picture = get_picture(date)['image']
 
-    return render_template('index.html', picture=picture, datetime=datetime, date=date)
+    return render_template('index.html', picture=picture, datetime=datetime, date=date, startDate=startDate)
 
 @app.errorhandler(404)
+def page_not_found(e):
+    return render_template('notfound.html')
+
+@app.errorhandler(500)
 def page_not_found(e):
     return render_template('notfound.html')
 
