@@ -8,7 +8,7 @@ import datetime
 import random
 
 wd = os.path.dirname(os.path.realpath(__file__))
-dbpath = os.path.join(wd, 'pictures/db.json')
+dbpath = os.path.join(wd, 'db.json')
 
 startDate = datetime.date(2017, 10, 1) # Do not shop pictures before this date
 
