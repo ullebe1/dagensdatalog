@@ -13,7 +13,9 @@
 
         <link rel="icon" href="/favicon.ico?v=1.1">
 
-        <title>Dagensdatalog</title>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+        <title>#DAGENSDATALOG</title>
 
         <style type="text/css">
             html, body {
@@ -43,7 +45,7 @@
             .info {
                 position: absolute;
                 top: 30px;
-                color: white;
+                color: #aaa;
                 font-size: 30px;
                 right: 30px;
                 text-align: right;
@@ -58,7 +60,7 @@
                 position: absolute;
                 height: 75px;
                 width: 75px;
-                color: white;
+                color: #aaa;
                 top: calc(50% - 37px);
                 font-size: 75px;
                 cursor: pointer;
@@ -84,6 +86,15 @@
 			    text-align: justify;
 			    width: 124px;
 			}
+
+            #logo {
+                font-family: 'Press Start 2P', cursive;
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                font-size: 1.5em;
+                color: #aaa;
+            }
         </style>
     </head>
     <body>
@@ -108,13 +119,17 @@
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
+        <div id="logo">#DAGENSDATALOG</div>
+
         <div class="info">
         	{{ date.strftime("%B %-d") }}<br>
 
         	{% if picture %}
-        	<div class="fb-share-button" data-href="https://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}" data-layout="button_count" data-size="large">
+        	<!--
+            <div class="fb-share-button" data-href="https://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}" data-layout="button_count" data-size="large">
         		<a class="fb-xfbml-parse-ignore" target="_blank" href="https://dagensdatalog.dk/{{ date.strftime('%d-%m-%Y') }}">Share</a>
         	</div>
+            -->
         	{% endif %}
         </div>
 

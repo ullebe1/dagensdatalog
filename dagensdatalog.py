@@ -82,6 +82,10 @@ def index():
 
     return render_template('index.html', picture=picture, datetime=datetime, date=date, startDate=startDate)
 
+@app.route('/upload')
+def upload():
+    return render_template('upload.html', count=get_count())
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('notfound.html')
@@ -93,6 +97,9 @@ def page_not_found(e):
 #
 # Helping methods
 #
+
+def get_count():
+    return len(os.listdir(os.path.join(wd, 'pictures')))
 
 def get_picture(date):
     picture = db.search((Query().date == str(date.strftime("%d-%m-%Y"))))
