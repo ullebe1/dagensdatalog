@@ -1,42 +1,29 @@
-# API
----
-## Get n latest pictures
+# Run
 
-**URL** : `/api/<n>`
+Make a virtual enviroment
 
-**Parameter format** : Integer in range 1-256
+```bash
+virtualenv venv
+```
+Activate the virtual enviroment
 
-**Method** : `GET`
-
-**Success response example**:
-
-```json
-[
-    {
-        "date": "02-10-2017",
-        "image": "21191304_10212053347583920_608589068_o.jpg"
-    },
-    {
-        "date": "01-10-2017",
-        "image": "21191188_10212053348583945_2086216017_o.jpg"
-    },
-    ...
-]
+```bash
+source venv/bin/activate
 ```
 
-## Get picture at specific date
+install dependencies
 
-**URL** : `/api/date/<date>`
-
-**Parameter format** : dd-mm-yyyy
-
-**Method** : `GET`
-
-**Success response example**:
-
-```json
-{
-    "date": "02-10-2017",
-    "image": "21191304_10212053347583920_608589068_o.jpg"
-}
+```bash
+pip install -r requirements.txt
 ```
+run it
+
+```bash
+./livereload.sh
+```
+
+## Note
+livereload requires the entr package
+
+
+
