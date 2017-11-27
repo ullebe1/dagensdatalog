@@ -44,7 +44,7 @@
 
             .info {
                 position: absolute;
-                top: 30px;
+                bottom: 30px;
                 color: #aaa;
                 font-size: 30px;
                 right: 30px;
@@ -60,7 +60,7 @@
                 position: absolute;
                 height: 75px;
                 width: 75px;
-                color: #aaa;
+                color: #fff;
                 top: calc(50% - 37px);
                 font-size: 75px;
                 cursor: pointer;
@@ -69,7 +69,7 @@
             }
 
             .arrow:hover {
-                opacity: 0.5;
+                opacity: 1;
             }
 
             .arrow.left {
@@ -95,6 +95,23 @@
                 font-size: 1.5em;
                 color: #aaa;
             }
+
+            #api {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                font-size: 1.5em;
+                color: #aaa;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            a:hover {
+                color: #fff;
+            }
         </style>
     </head>
     <body>
@@ -119,7 +136,9 @@
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
-        <div id="logo">#DAGENSDATALOG</div>
+        <div id="logo"><a href="/">#DAGENSDATALOG<br><font style="font-size: 10px;">{{slogan}}</font></a></div>
+
+        <div id="api"><a href="/upload">Upload</a> | <a href="/api/doc">API doc</a></div>
 
         <div class="info">
         	{{ date.strftime("%B %-d") }}<br>

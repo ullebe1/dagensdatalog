@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="/favicon.ico?v=1.1">
+
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+        <title>#DAGENSDATALOG</title>
+
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                width: 100%;
+                padding: 0px;
+                margin: 0px;
+
+                background-color: #080808;
+                font-family: monospace;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                flex-direction: column;
+
+                color: #aaa;
+            }
+
+            .box {
+                margin: 16px;
+            }
+
+            #logo {
+                font-family: 'Press Start 2P', cursive;
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                font-size: 1.5em;
+                color: #aaa;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            a:hover {
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107390369-1"></script>
+
+        <div id="logo"><a href="/">#DAGENSDATALOG<br><font style="font-size: 10px;">{{slogan}}</font></a></div>
+
+        <div class="box">
+            <h2>API documentation</h2>
+
+            <hr><br>
+
+            <h3>Get images</h3>
+
+            <span>URL: &nbsp;&nbsp;<a href="/api" target="_blank">http://dagensdatalog.dk/api</a></span><br>
+            <span>ABOUT: Returns a json array with the 10 latest images</span><br><br>
+            <br>
+            <span>URL: &nbsp;&nbsp;<a href="/api/20" target="_blank">http://dagensdatalog.dk/api/:n</a></span><br>
+            <span>ABOUT: Returns an array of <i>n</i> latest images where <i>n</i> is an integer between 0-255</span><br><br>
+            <br>
+            <span>URL: &nbsp;&nbsp;<a href="/api/date/01-01-2017" target="_blank">http://dagensdatalog.dk/api/date/:date</a></span><br>
+            <span>ABOUT: Returns a json object with the image from the specified date where <i>date</i> is in the format of dd-mm-yyyy</span>
+
+            <br><br>
+
+            <h3>Upload images</h3>
+
+            <span>URL: &nbsp;&nbsp;http://dagensdatalog.dk/upload</span><br>
+            <span>ABOUT: Post a multipart/form-data with files field 'images'</span><br><br>
+
+            <h2>Bonus</h2>
+
+            <hr><br>
+
+            <h3>Systemd service</h3>
+
+            <span>URL: &nbsp;&nbsp;<a href="https://github.com/naueramant/dagensdatalog-service" target="_blank">naueramant/dagensdatalog-service</a></span><br>
+            <span>ABOUT: A systemd service for gnome which downloads and sets image of the day as wallpaper</span>
+
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="/favicon.ico?v=1.1">
+
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+        <title>#DAGENSDATALOG</title>
+
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                width: 100%;
+                padding: 0px;
+                margin: 0px;
+
+                background-color: #080808;
+                font-family: monospace;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                flex-direction: column;
+
+                color: #aaa;
+            }
+
+            #logo {
+                font-family: 'Press Start 2P', cursive;
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                font-size: 1.5em;
+                color: #aaa;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            a:hover {
+                color: #fff;
+            }
+
+            .image_item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image_item button {
+                margin: 0px 20px;
+            }
+
+            #images_container {
+                max-height: 80%;
+            }
+
+            .item_wrap {
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+            }
+
+            .image-buttons {
+                flex-grow: 0;
+            }
+
+            .image {
+                flex-grow: 1;
+            }
+
+            button {
+                background-color: transparent; 
+                border: 1px solid white;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+                opacity: 0.5;
+            }
+
+            button:hover {
+                opacity: 1;
+            }
+
+            hr {
+                opacity: 0.5;
+            }
+        </style>
+
+        <script type="text/javascript">
+            function dopost(url, file){
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', url + file, true);
+                xhr.send();
+
+                var elem = document.querySelectorAll('[data-id="' + file + '"]')[0];
+                elem.parentNode.removeChild(elem);
+
+                var container = document.getElementById("images_container");
+                if(container.children.length == 0) {
+                    container.append('No images pending approval');
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107390369-1"></script>
+
+        <div id="logo"><a href="/">#DAGENSDATALOG<br><font style="font-size: 10px;">{{slogan}}</font></a></div>
+
+        <div id="images_container">
+            {% if pictures | length == 0 %}
+                No images pending approval
+            {% else %}
+            {% endif %}
+            {% for pic in pictures %}
+            <div class="image_item" data-id="{{ pic }}">
+                <hr style="width: 100%;">
+                <div class="item_wrap">
+                    <div class="image">
+                        <a href="/admin/picture/{{ pic }}" target="_blank" style="background-image: url(/admin/picture/{{ pic }}); background-size: contain; background-repeat: no-repeat; background-position: center; height: 200px; width: 250px; display: block;"></a>
+                    </div>
+                    <div style="background-color: #7b7b7b; height: 200px; width: 2px; margin: 0px 5px;"></div>
+                    <div class="image-buttons">
+                        <button onclick="dopost('/admin/approve/', '{{ pic }}')" style="border-color: green; color: green;">Approve</button>
+                        <button  onclick="dopost('/admin/disapprove/', '{{ pic }}')" style="border-color: red; color: red;">Disapprove</button>
+                    </div>
+                </div>
+                <hr style="width: 100%;">
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
