@@ -172,8 +172,8 @@ def requires_auth(f):
 def admin():
     pictures = os.listdir(os.path.join(wd, 'uploads'))
     pictures = [pic for pic in pictures if not pic.endswith('.gitkeep')] # remove the .gitkeep file...
-    print(pictures)
-    return render_template('admin.html', pictures=pictures)
+    slogan = get_slogan()
+    return render_template('admin.html', pictures=pictures, slogan=slogan)
 
 @app.route('/admin/picture/<path>')
 @requires_auth
