@@ -55,6 +55,14 @@ slogans = [
     'reduce-reduce error',
     'AU - Alchoholics united',
     '#AUpassende',
+    'Det er aldrig forsent at droppe ud',
+    'Det er meget sjovt, men man bliver klistret af det',
+    'Look dad a compile error!',
+    'Javascript er et godt sprog',
+    'Scheme, ScheMMe, SCHEME!',
+    'Hvis du kan nå i BUND må du introducere TOP',
+    'Store slurke, tænk som en fisk',
+    'Did you just assume my distro?!',
 ]
 
 #
