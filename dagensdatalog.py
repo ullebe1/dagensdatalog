@@ -26,9 +26,11 @@ compress.init_app(app)
 # Configure dropzone file uploads
 #
 
+app.config['MAX_CONTENT_LENGTH'] = 25 * 1024 * 1024
+
 app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
 app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*'
-app.config['DROPZONE_MAX_FILE_SIZE'] = 5 # max 5mb files
+app.config['DROPZONE_MAX_FILE_SIZE'] = 25 # max 5mb files
 app.config['DROPZONE_INPUT_NAME'] = 'images'
 app.config['DROPZONE_DEFAULT_MESSAGE'] = 'Drop images here to upload'
 
