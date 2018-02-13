@@ -14,6 +14,7 @@
         <link rel="icon" href="/favicon.ico?v=1.1">
 
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <title>#DAGENSDATALOG</title>
 
@@ -54,6 +55,22 @@
 
             .info a {
             	color: rgba(0,0,0,0);
+            }
+
+            #download-button {
+                position: absolute;
+                bottom: 30px;
+                left: 30px;
+                color: #aaa;
+            }
+
+            #download-button:hover {
+                color: #fff;
+                cursor: pointer;
+            }
+
+            #download-button i {
+                font-size: 30px;
             }
 
             .arrow {
@@ -126,7 +143,11 @@
                 .info {
                     font-size: 24px;
                     bottom: 15px;
-                }                
+                } 
+
+                #download-button {
+                    bottom: 15px;
+                }               
             }
         </style>
     </head>
@@ -155,6 +176,12 @@
         <div id="logo"><a href="/">#DAGENSDATALOG<br><font style="font-size: 10px;">{{slogan}}</font></a></div>
 
         <div id="api"><a href="/upload">Upload</a> | <a href="/api/doc">API doc</a></div>
+
+        <div id="download-button">
+            <a href="/picture/{{picture}}" download="{{picture}}">
+                <i class="material-icons">file_download</i>
+            </a>
+        </div>
 
         <div class="info">
         	{{ date.strftime("%B %-d") }}<br>
