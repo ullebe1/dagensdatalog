@@ -45,8 +45,10 @@ Persistent data mount points
 -   /app/db.json
 
 ## Admin login
-to login to the admin page use "admin" and "password".
+
+To login to the admin page use "admin" and "password".
 To specify the admin login use the enviroment variables "ADMIN_USER" and "ADMIN_PASSWORD".
 
+## Slogans
 
-
+Feel free to add new slogans in the slogans.txt file. Slogans are separated by newline.
