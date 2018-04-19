@@ -1,8 +1,6 @@
 # Dagensdatalog
 
-----
-
-## Run
+## Development run
 
 Make a virtual enviroment
 
@@ -38,8 +36,13 @@ To run the image
 
 ```bash
 docker run -p 5000:5000 dagensdatalog
-
 ```
+
+Persistent data mount points
+
+-   /app/uploads
+-   /app/pictures
+-   /app/db.json
 
 ## Admin login
 to login to the admin page use "admin" and "password".
