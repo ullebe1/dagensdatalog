@@ -1,8 +1,10 @@
 FROM python:alpine
 
-EXPOSE 5000:80
-
 MAINTAINER Ulrik Djurtoft "ullebe1@gmail.com"
+
+# Set Timezone
+RUN apk add --no-cache tzdata
+ENV TZ=Europe/Copenhagen
 
 # Prepare app dir
 RUN mkdir -p /app/uploads /app/pictures
@@ -12,7 +14,7 @@ WORKDIR /app
 COPY templates ./templates
 COPY pictures ./pictures
 COPY dagensdatalog.py ./dagensdatalog.py
-COPYs slogans.txt ./slogans.txt
+COPY slogans.txt ./slogans.txt
 COPY requirements.txt ./requirements.txt
 
 # Install packages
