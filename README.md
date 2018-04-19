@@ -1,4 +1,8 @@
-# Run
+# Dagensdatalog
+
+----
+
+## Run
 
 Make a virtual enviroment
 
@@ -19,11 +23,27 @@ pip install -r requirements.txt
 run it
 
 ```bash
-./livereload.sh
+python dagensdatalog.py
 ```
 
-## Note
-livereload requires the entr package
+## Docker
+
+To build the image run
+
+```bash
+docker build -t dagensdatalog .
+```
+
+To run the image 
+
+```bash
+docker run -p 5000:5000 dagensdatalog
+
+```
+
+## Admin login
+to login to the admin page use "admin" and "password".
+To specify the admin login use the enviroment variables "ADMIN_USER" and "ADMIN_PASSWORD".
 
 
 
