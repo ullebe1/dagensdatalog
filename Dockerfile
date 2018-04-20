@@ -6,6 +6,12 @@ MAINTAINER Ulrik Djurtoft "ullebe1@gmail.com"
 RUN apk add --no-cache tzdata
 ENV TZ=Europe/Copenhagen
 
+# Expose ports
+EXPOSE 80/tcp
+EXPOSE 80/udp
+EXPOSE 5000/tcp
+EXPOSE 5000/udp
+
 # Prepare app dir
 RUN mkdir -p /app/uploads /app/pictures
 WORKDIR /app
