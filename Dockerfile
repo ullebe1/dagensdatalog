@@ -1,6 +1,7 @@
 FROM python:alpine
 
-MAINTAINER Ulrik Djurtoft "ullebe1@gmail.com"
+LABEL maintainer "ullebe1@gmail.com"
+LABEL maintainer "jonastranberg93@gmail.com"
 
 # Set Timezone
 RUN apk add --no-cache tzdata
