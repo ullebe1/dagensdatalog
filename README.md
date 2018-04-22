@@ -1,4 +1,6 @@
-# Dagensdatalog
+# Dagensdatalog 
+
+[![](https://img.shields.io/docker/build/dagensdatalog/dagensdatalog-website.svg)](https://hub.docker.com/r/dagensdatalog/dagensdatalog-website/builds/)  
 
 ## Development run
 
