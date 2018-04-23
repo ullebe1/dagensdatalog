@@ -1,6 +1,6 @@
 # Dagensdatalog 
 
-[![](https://img.shields.io/docker/build/dagensdatalog/dagensdatalog-website.svg)](https://hub.docker.com/r/dagensdatalog/dagensdatalog-website/builds/)  
+[![Docker Build Status](https://img.shields.io/docker/build/dagensdatalog/dagensdatalog-website.svg?style=flat-square)](https://hub.docker.com/r/dagensdatalog/dagensdatalog-website/builds/)
 
 ## Development run
 
