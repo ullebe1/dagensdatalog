@@ -1,35 +1,31 @@
-FROM ubuntu:latest
+FROM python:alpine
 
-MAINTAINER Ulrik Djurtoft "ullebe1@gmail.com"
+LABEL maintainer "ullebe1@gmail.com"
+LABEL maintainer "jonastranberg93@gmail.com"
 
-RUN apt-get update -y && \
-    apt-get install -y python3-pip python3-dev python3-virtualenv 
-RUN pip3 install gunicorn
+# Set Timezone
+RUN apk add --no-cache tzdata
+ENV TZ=Europe/Copenhagen
 
-# We copy just the requirements.txt first to leverage Docker cache
-#COPY ./requirements.txt /app/requirements.txt
-#
-#WORKDIR /app
-#
-#RUN pip install -r requirements.txt
-#
-#COPY . /app
-#
-#ENTRYPOINT [ "python" ]
-#
-#CMD [ "Dagensdatalog.py" ]
+# Expose ports
+EXPOSE 80/tcp
+EXPOSE 80/udp
+EXPOSE 5000/tcp
+EXPOSE 5000/udp
 
+# Prepare app dir
+RUN mkdir -p /app/uploads /app/pictures
+WORKDIR /app
 
-# Setup flask application
-RUN mkdir -p /deploy/app
-COPY gunicorn_config.py /deploy/gunicorn_config.py
-COPY dagensdatalog.py /deploy/app/dagensdatalog.py
-COPY templates /deploy/app/templates
-COPY ./requirements.txt /deploy/app/requirements.txt
-RUN pip3 install -r /deploy/app/requirements.txt
-WORKDIR /deploy/app
+# Copy flask application
+COPY templates ./templates
+COPY pictures ./pictures
+COPY dagensdatalog.py ./dagensdatalog.py
+COPY slogans.txt ./slogans.txt
+COPY requirements.txt ./requirements.txt
 
-EXPOSE 80
+# Install packages
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Start gunicorn
-CMD ["gunicorn", "--config", "/deploy/gunicorn_config.py", "dagensdatalog:app"]
+# Start app
+CMD [ "python", "dagensdatalog.py" ]

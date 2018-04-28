@@ -38,34 +38,18 @@ app.config['DROPZONE_DEFAULT_MESSAGE'] = 'Drop images here to upload'
 # Slogans
 #
 
-slogans = [
-    'Når du studerer for sjov',
-    'P = NP',
-    'www.dropud.nu',
-    'P er LIG med NP, P er ikke en DELMÆNGDE af NP',
-    'TÅGEKAMRET',
-    'It\'s a unix system, i know this!',
-    'I\'d just like to interject for a moment...',
-    'ME TOO THANKS',
-    'Grøn kage',
-    'undefined',
-    'Mere swag',
-    'Rubber duck debugging',
-    'Balmer peaking',
-    'Dovs med sovs',
-    'segmentation fault (core dumped)',
-    'reduce-reduce error',
-    'AU - Alchoholics united',
-    '#AUpassende',
-    'Det er aldrig forsent at droppe ud',
-    'Det er meget sjovt, men man bliver klistret af det',
-    'Look dad a compile error!',
-    'Javascript er et godt sprog',
-    'Scheme, ScheMMe, SCHEME!',
-    'Hvis du kan nå i BUND må du introducere TOP',
-    'Store slurke, tænk som en fisk',
-    'Did you just assume my distro?!',
-]
+slogans = []
+
+with open('./slogans.txt') as f:
+    slogans = f.readlines()
+
+#
+# Pre run check
+#
+
+for d in ['pictures', 'uploads']:
+    if not os.path.exists('./' + d):
+        os.makedirs(d)
 
 #
 # Routes
@@ -159,7 +143,7 @@ def api_about():
 #
 
 def check_auth(username, password):
-    return (os.environ['ADMIN_USER'] == username and os.environ['ADMIN_PASSWORD'] == password)
+    return ((os.environ.get('ADMIN_USER') or 'admin') == username and (os.environ.get('ADMIN_PASSWORD') or 'password') == password)
 
 def authenticate():
     """Sends a 401 response that enables basic auth"""
@@ -265,4 +249,4 @@ def get_pictures(n=10):
     return sorted(pictures, key=lambda p: datetime.datetime.strptime(p['date'], "%d-%m-%Y").date(), reverse=True)[:n]
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=(os.environ.get('DAGENSDATALOG_PORT') or 5000))
