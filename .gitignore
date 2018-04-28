@@ -3,4 +3,5 @@
 /venv
 /.idea
 *.log
+.vscode/
 db.json

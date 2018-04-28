@@ -93,7 +93,7 @@ def api_n(n):
         n = int(n)
 
         if n > 256 or n < 1:
-            return jsonify({'error': 'number out of range 1-255'}), 400
+            return jsonify({'error': 'number out of range 1-256'}), 400
 
         return jsonify(get_pictures(int(n)))
     except ValueError:
