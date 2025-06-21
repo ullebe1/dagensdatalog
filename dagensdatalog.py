@@ -57,7 +57,7 @@ for d in ['pictures', 'uploads']:
 
 @app.route('/picture/<path>')
 def send_picture(path):
-    return send_from_directory('pictures', path)
+    return send_from_directory('data/pictures', path)
 
 @app.route('/api/date/<date>')
 def api_specific(date):
@@ -164,7 +164,7 @@ def requires_auth(f):
 @app.route('/admin')
 @requires_auth
 def admin():
-    pictures = os.listdir(os.path.join(wd, 'uploads'))
+    pictures = os.listdir(os.path.join(wd, 'data/uploads'))
     pictures = [pic for pic in pictures if not pic.endswith('.gitkeep')] # remove the .gitkeep file...
     slogan = get_slogan()
     return render_template('admin.html', pictures=pictures, slogan=slogan)
@@ -172,7 +172,7 @@ def admin():
 @app.route('/admin/picture/<path>')
 @requires_auth
 def admin_picture(path):
-    return send_from_directory('uploads', path)
+    return send_from_directory('data/uploads', path)
 
 @app.route('/admin/approve/<name>', methods=['POST'])
 @requires_auth
@@ -214,7 +214,7 @@ def page_not_found(e):
 #
 
 def get_count():
-    return (len(os.listdir(os.path.join(wd, 'pictures'))), len(os.listdir(os.path.join(wd, 'uploads'))) - 1)
+    return (len(os.listdir(os.path.join(wd, 'data/pictures'))), len(os.listdir(os.path.join(wd, 'data/uploads'))) - 1)
 
 def get_slogan():
     return random.choice(slogans)
@@ -232,7 +232,7 @@ def select_new_picture(date):
     datestr = str(date.strftime("%d-%m-%Y"))
 
     if not db.search((Query().date == datestr)):
-        pictures = os.listdir(os.path.join(wd, 'pictures'))
+        pictures = os.listdir(os.path.join(wd, 'data/pictures'))
 
         if pictures:
             old_pictures = list(map(lambda p: p['image'], get_pictures(30)))
