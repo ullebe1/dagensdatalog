@@ -14,7 +14,7 @@ EXPOSE 5000/tcp
 EXPOSE 5000/udp
 
 # Prepare app dir
-RUN mkdir -p /app/uploads /app/pictures
+RUN mkdir -p /app/data
 WORKDIR /app
 
 # Copy flask application
