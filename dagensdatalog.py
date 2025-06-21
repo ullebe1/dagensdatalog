@@ -249,4 +249,5 @@ def get_pictures(n=10):
     return sorted(pictures, key=lambda p: datetime.datetime.strptime(p['date'], "%d-%m-%Y").date(), reverse=True)[:n]
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=(int(os.environ.get('DAGENSDATALOG_PORT')) or 5000))
+    port = int(os.environ['DAGENSDATALOG_PORT']) if 'DAGENSDATALOG_PORT' in os.environ else 5000
+    app.run(host='0.0.0.0', port=port)
