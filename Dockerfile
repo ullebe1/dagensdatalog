@@ -27,5 +27,14 @@ COPY requirements.txt ./requirements.txt
 # Install packages
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Create a non-root user and group
+RUN addgroup -S appuser && adduser -S -G appuser appuser
+
+# Set permissions
+RUN chown -R appuser:appuser /app/data
+
+# Switch to the non-root user
+USER appuser
+
 # Start app
 CMD [ "python", "dagensdatalog.py" ]
