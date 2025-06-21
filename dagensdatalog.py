@@ -48,7 +48,7 @@ with open('./slogans.txt') as f:
 #
 
 for d in ['pictures', 'uploads']:
-    if not os.path.exists('./' + d):
+    if not os.path.exists('./data/' + d):
         os.makedirs(d)
 
 #
