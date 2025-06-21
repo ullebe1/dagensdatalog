@@ -19,7 +19,7 @@ WORKDIR /app
 
 # Copy flask application
 COPY templates ./templates
-COPY pictures ./pictures
+COPY data ./data
 COPY dagensdatalog.py ./dagensdatalog.py
 COPY slogans.txt ./slogans.txt
 COPY requirements.txt ./requirements.txt
