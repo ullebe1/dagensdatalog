@@ -3,7 +3,7 @@ Flask==2.2.5
 itsdangerous==0.24
 Jinja2==3.1.6
 MarkupSafe==1.1.1
-Werkzeug==0.15.5
+Werkzeug==3.0.6
 pathlib==1.0.1
 argparse==1.2.1
 tinydb==3.5.0
