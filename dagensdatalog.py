@@ -11,7 +11,7 @@ from tinydb import TinyDB, Query
 import os, datetime, random, shutil, uuid
 
 wd = os.path.dirname(os.path.realpath(__file__))
-dbpath = os.path.join(wd, 'db.json')
+dbpath = os.path.join(wd, 'data/db.json')
 
 startDate = datetime.date(2017, 10, 1) # Do not show pictures before this date
 
