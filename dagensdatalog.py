@@ -203,11 +203,11 @@ def admin_picture_disapprove(name):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('notfound.html')
+    return render_template('notfound.html'), 404
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return render_template('notfound.html')
+    return render_template('notfound.html'), 500
 
 #
 # Helping methods
