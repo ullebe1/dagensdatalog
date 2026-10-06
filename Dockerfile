@@ -4,7 +4,7 @@ LABEL maintainer "ullebe1@gmail.com"
 LABEL maintainer "jonastranberg93@gmail.com"
 
 # Set Timezone
-RUN apk add --no-cache tzdata
+RUN apk add --no-cache tzdata build-base
 ENV TZ=Europe/Copenhagen
 
 # Expose ports
