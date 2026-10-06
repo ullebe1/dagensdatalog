@@ -1,10 +1,10 @@
-FROM python:alpine
+FROM python:3.14-alpine3.24
 
 LABEL maintainer "ullebe1@gmail.com"
 LABEL maintainer "jonastranberg93@gmail.com"
 
 # Set Timezone
-RUN apk add --no-cache tzdata build-base
+RUN apk add --no-cache tzdata build-base libffi-dev
 ENV TZ=Europe/Copenhagen
 
 # Expose ports
